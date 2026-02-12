@@ -1,0 +1,65 @@
+#schema {
+  padding: 0.5rem;
+  height: auto;
+  width: 100%;
+  .schema-legend {
+    padding: 16px 32px;
+    gap: 12px;
+    display: block;
+    align-items: center;
+    background: #fff;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 2px solid #e5e5e5;
+    color: #0f172a;
+
+    .legend-accent-key {
+      color: #374151;
+
+      code {
+        background: #f3f4f6;
+        padding: 1px 6px;
+        border-radius: 6px;
+        font-family:
+          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+      }
+    }
+
+    .legend-list {
+      list-style: none;
+      padding: 0 16px;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 8px 16px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      display: inline-block;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+
+      &.dot-true {
+        background: #16a34a;
+      } /* verde cards */
+      &.dot-false {
+        background: #dc2626;
+      } /* rojo cards */
+      &.dot-null {
+        background: #e5e5e5;
+      } /* gris cards */
+    }
+
+    .legend-text {
+      color: #111827;
+    }
+  }
+}

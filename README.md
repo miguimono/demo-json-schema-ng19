@@ -2,6 +2,14 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
 
+## Node version
+
+Use Node.js 20 for stable builds.
+
+```bash
+nvm use
+```
+
 ## Development server
 
 To start a local development server, run:
@@ -36,6 +44,12 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
+For a GitHub Pages-compatible build:
+
+```bash
+npm run build:pages
+```
+
 ## Running unit tests
 
 To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
@@ -57,3 +71,13 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Deploy to GitHub Pages
+
+This repository includes a workflow at `.github/workflows/deploy-pages.yml`.
+
+1. Push to the `main` branch.
+2. In GitHub, go to `Settings > Pages`.
+3. Set `Build and deployment` source to `GitHub Actions`.
+
+The workflow builds the app with the repository base path and deploys it automatically.

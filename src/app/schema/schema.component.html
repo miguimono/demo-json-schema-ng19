@@ -1,0 +1,45 @@
+<!-- src/app/shared/sh-schema/sh-schema.component.html -->
+<div id="schema">
+  <div class="schema-component">
+    <h1>{{ title() }}</h1>
+    @if (legendVisible()) {
+      <div class="schema-legend">
+        <ul class="legend-list">
+          <li class="legend-item schema-title">
+            <h3>
+              {{ legendTitle() }}
+            </h3>
+          </li>
+          @if (accentByKey()) {
+            <li class="legend-item">
+              @if (accentByKey(); as key) {
+                <span class="legend-accent-key">
+                  Clave de acento: <code>{{ key }}</code>
+                </span>
+              }
+            </li>
+          }
+          @for (it of legendItems(); track it.text) {
+            <li class="legend-item">
+              <span
+                class="legend-dot"
+                [class.dot-true]="it.color === 'green'"
+                [class.dot-false]="it.color === 'red'"
+                [class.dot-null]="it.color === 'grey'"
+                aria-hidden="true"
+              ></span>
+              <span class="legend-text">{{ it.text }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    }
+    <div class="schema-wrapper">
+      <schema
+        [data]="schemeData()"
+        [settings]="settings()"
+        [cardTemplate]="cardTemplate()"
+      ></schema>
+    </div>
+  </div>
+</div>
