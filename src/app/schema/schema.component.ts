@@ -148,6 +148,8 @@ export class SchemaComponent {
       imageFit: this.imageFit(),
       enableCollapse: this.enableCollapse(),
       autoResizeCards: true,
+      valueShowTooltip: true,
+      valueMaxChars: 50,
     },
   }));
 }

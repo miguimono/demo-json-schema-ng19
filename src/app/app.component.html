@@ -15,8 +15,13 @@
       [descriptionShowColorTrue]="damageOptions.descriptionShowColorTrue"
       [descriptionShowColorFalse]="damageOptions.descriptionShowColorFalse"
       [descriptionShowColorNull]="damageOptions.descriptionShowColorNull"
+      [showImage]="damageOptions.showImage"
     >
     </app-schema>
+    <h1>Json completo:</h1>
+    <p>
+      {{ data | json }}
+    </p>
   } @else {
     <p>Cargando visualizador...</p>
   }
