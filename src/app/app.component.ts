@@ -20,8 +20,6 @@ export class AppComponent {
   title = 'json-schema-ng19';
   data = [
     {
-      jsonSchema: 'json-schema-ng19',
-
       data: {
         level: 'nivel 0',
         title: 'Árbol de Prueba',
