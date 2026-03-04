@@ -1,4 +1,9 @@
-import { DEFAULT_SETTINGS, ImageFit, ImageShape, SchemaSettings } from '@miguimono/json-schema/ng19';
+import {
+  DEFAULT_SETTINGS,
+  ImageFit,
+  ImageShape,
+  SchemaSettings,
+} from '@miguimono/json-schema/ng19';
 
 export interface FullSchemaDefaults {
   messages: {
@@ -17,6 +22,9 @@ export interface FullSchemaDefaults {
     showColorTrue: boolean;
     showColorFalse: boolean;
     showColorNull: boolean;
+    colorTrue: string;
+    colorFalse: string;
+    colorNull: string;
   };
   layout: {
     layoutDirection: 'RIGHT' | 'DOWN';
@@ -89,6 +97,9 @@ export function getFullSchemaDefaults(): FullSchemaDefaults {
       showColorTrue: DEFAULT_SETTINGS.colors?.showColorTrue ?? false,
       showColorFalse: DEFAULT_SETTINGS.colors?.showColorFalse ?? false,
       showColorNull: DEFAULT_SETTINGS.colors?.showColorNull ?? false,
+      colorTrue: DEFAULT_SETTINGS.colors?.colorTrue ?? '#16a34a',
+      colorFalse: DEFAULT_SETTINGS.colors?.colorFalse ?? '#dc2626',
+      colorNull: DEFAULT_SETTINGS.colors?.colorNull ?? '#6b7280',
     },
     layout: {
       layoutDirection: DEFAULT_SETTINGS.layout?.layoutDirection ?? 'RIGHT',
@@ -109,7 +120,8 @@ export function getFullSchemaDefaults(): FullSchemaDefaults {
         showLayoutAlign:
           DEFAULT_SETTINGS.viewport?.toolbarControls?.showLayoutAlign ?? true,
         showLayoutDirection:
-          DEFAULT_SETTINGS.viewport?.toolbarControls?.showLayoutDirection ?? true,
+          DEFAULT_SETTINGS.viewport?.toolbarControls?.showLayoutDirection ??
+          true,
       },
     },
     dataView: {

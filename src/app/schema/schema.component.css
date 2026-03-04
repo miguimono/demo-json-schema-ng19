@@ -71,22 +71,71 @@
       border-radius: 999px;
       display: inline-block;
       border: 1px solid rgba(0, 0, 0, 0.08);
-
-      &.dot-true {
-        background: #16a34a;
-      } /* verde cards */
-      &.dot-false {
-        background: #dc2626;
-      } /* rojo cards */
-      &.dot-null {
-        background: #e5e5e5;
-      } /* gris cards */
     }
 
     .legend-text {
       color: #111827;
       font-size: 0.82rem;
       font-weight: 500;
+    }
+  }
+
+  .schema-debug-grid {
+    margin-top: 12px;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .debug-card {
+    border: 1px solid #dbe6f3;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  .debug-card-header {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e2e8f0;
+    display: grid;
+    gap: 4px;
+
+    h4 {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #0f172a;
+    }
+
+    p {
+      margin: 0;
+      color: #475569;
+      font-size: 0.78rem;
+      font-family:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+    }
+  }
+
+  .debug-pre {
+    margin: 0;
+    padding: 12px;
+    max-height: 280px;
+    overflow: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-size: 0.76rem;
+    line-height: 1.35;
+    color: #0f172a;
+    background: #f8fafc;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+  }
+
+  @media (max-width: 980px) {
+    .schema-debug-grid {
+      grid-template-columns: 1fr;
     }
   }
 }

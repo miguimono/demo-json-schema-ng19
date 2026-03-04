@@ -8,15 +8,18 @@
     ></app-config-banner>
 
     <main class="content-column">
-      <app-title-module [title]="schemaTitle"></app-title-module>
+      <app-title-module
+        [title]="schemaTitle"
+        [subtitle]="'Version de libreria: ' + schemaLibraryVersion"
+      ></app-title-module>
 
       <section class="schema-module">
         <app-schema
           [schemeData]="renderData"
           [schemaSettings]="settingsFormModel"
-          [descriptionShowColorTrue]="'enabled true'"
-          [descriptionShowColorFalse]="'enabled false'"
-          [descriptionShowColorNull]="'enabled null'"
+          [descriptionShowColorTrue]="'true'"
+          [descriptionShowColorFalse]="'false'"
+          [descriptionShowColorNull]="'null'"
         ></app-schema>
       </section>
     </main>

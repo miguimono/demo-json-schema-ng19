@@ -28,6 +28,7 @@ export class AppComponent {
   renderData: unknown = structuredClone(DEFAULT_SCHEMA_DATA);
 
   schemaTitle = 'JsonSchema-ng19';
+  schemaLibraryVersion = '2.2.0';
   settingsFormModel: SchemaSettings = buildInitialSettings();
 
   onSettingsChange(settings: SchemaSettings): void {

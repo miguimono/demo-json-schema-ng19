@@ -77,6 +77,24 @@ export const SCHEMA_SETTINGS_DOCS: Record<
     description: 'Habilita color para valor null.',
     example: 'true',
   },
+  'colors.colorTrue': {
+    type: 'string',
+    description:
+      'Color base para visuales de true (texto, borde y sombras derivadas).',
+    example: '"#16a34a"',
+  },
+  'colors.colorFalse': {
+    type: 'string',
+    description:
+      'Color base para visuales de false (texto, borde y sombras derivadas).',
+    example: '"#dc2626"',
+  },
+  'colors.colorNull': {
+    type: 'string',
+    description:
+      'Color base para visuales de null (texto, borde y sombras derivadas).',
+    example: '"#6b7280"',
+  },
 
   'layout.layoutDirection': {
     type: '"RIGHT" | "DOWN"',

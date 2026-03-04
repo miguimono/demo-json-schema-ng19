@@ -11,6 +11,7 @@ import {
   input,
   TemplateRef,
 } from '@angular/core';
+import { environment } from '../../environments/environment';
 import { getFullSchemaDefaults } from '../shared/schema-settings-defaults';
 
 const FULL_DEFAULTS = getFullSchemaDefaults();
@@ -23,6 +24,10 @@ const FULL_DEFAULTS = getFullSchemaDefaults();
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SchemaComponent {
+  readonly showJsonDebugSection = environment.schemaDebug.showJsonSection;
+  readonly showSchemaInputsDebugSection =
+    environment.schemaDebug.showSchemaInputsSection;
+
   // --- Inputs básicos ---
   // title = input<string>('json-schema-ng19: ');
   id = input<number | string | null>(null);
@@ -48,6 +53,9 @@ export class SchemaComponent {
   showColorTrue = input<boolean>(FULL_DEFAULTS.colors.showColorTrue);
   showColorFalse = input<boolean>(FULL_DEFAULTS.colors.showColorFalse);
   showColorNull = input<boolean>(FULL_DEFAULTS.colors.showColorNull);
+  colorTrue = input<string>(FULL_DEFAULTS.colors.colorTrue);
+  colorFalse = input<string>(FULL_DEFAULTS.colors.colorFalse);
+  colorNull = input<string>(FULL_DEFAULTS.colors.colorNull);
 
   descriptionShowColorTrue = input<string | null>(null);
   descriptionShowColorFalse = input<string | null>(null);
@@ -167,6 +175,15 @@ export class SchemaComponent {
     },
   );
 
+  legendColorMap = computed<Record<'green' | 'red' | 'grey', string>>(() => {
+    const colors = this.resolvedSettings().colors;
+    return {
+      green: colors?.colorTrue ?? FULL_DEFAULTS.colors.colorTrue,
+      red: colors?.colorFalse ?? FULL_DEFAULTS.colors.colorFalse,
+      grey: colors?.colorNull ?? FULL_DEFAULTS.colors.colorNull,
+    };
+  });
+
   /** Mapa completo de configuración para el <schema> interno. */
 
   legacySettings = computed<SchemaSettings>(() => ({
@@ -186,6 +203,9 @@ export class SchemaComponent {
       showColorTrue: this.showColorTrue(),
       showColorFalse: this.showColorFalse(),
       showColorNull: this.showColorNull(),
+      colorTrue: this.colorTrue(),
+      colorFalse: this.colorFalse(),
+      colorNull: this.colorNull(),
     },
     layout: {
       layoutDirection: this.layoutDirection(),
@@ -241,4 +261,21 @@ export class SchemaComponent {
   resolvedSettings = computed<SchemaSettings>(
     () => this.schemaSettings() ?? this.legacySettings(),
   );
+
+  debugDataJson = computed<string>(() => this.stringifySafe(this.schemeData()));
+
+  debugSchemaInputsJson = computed<string>(() =>
+    this.stringifySafe({
+      settings: this.resolvedSettings(),
+      cardTemplate: this.cardTemplate() ? '[TemplateRef provided]' : null,
+    }),
+  );
+
+  private stringifySafe(value: unknown): string {
+    try {
+      return JSON.stringify(value, null, 2);
+    } catch {
+      return '[No se pudo serializar el contenido]';
+    }
+  }
 }

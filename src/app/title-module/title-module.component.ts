@@ -8,4 +8,5 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 })
 export class TitleModuleComponent {
   title = input<string>('JsonSchema-ng19');
+  subtitle = input<string>('');
 }

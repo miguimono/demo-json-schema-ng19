@@ -46,7 +46,10 @@ export class ConfigBannerComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['defaultJsonObject'] && !changes['defaultJsonObject'].firstChange) {
+    if (
+      changes['defaultJsonObject'] &&
+      !changes['defaultJsonObject'].firstChange
+    ) {
       this.initializeState();
     }
   }
@@ -81,7 +84,8 @@ export class ConfigBannerComponent implements OnInit, OnChanges {
       this.jsonError = null;
       this.renderDataChange.emit(parsed);
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Error desconocido';
+      const message =
+        error instanceof Error ? error.message : 'Error desconocido';
       this.jsonError = `JSON inválido: ${message}`;
     }
   }
@@ -166,7 +170,10 @@ export class ConfigBannerComponent implements OnInit, OnChanges {
       const parsed = JSON.parse(text);
 
       if (kind === 'stringArray') {
-        if (!Array.isArray(parsed) || parsed.some((item) => typeof item !== 'string')) {
+        if (
+          !Array.isArray(parsed) ||
+          parsed.some((item) => typeof item !== 'string')
+        ) {
           this.setFieldError(path, 'Debe ser un arreglo JSON de strings.');
           return;
         }
@@ -179,7 +186,10 @@ export class ConfigBannerComponent implements OnInit, OnChanges {
           Array.isArray(parsed) ||
           Object.values(parsed).some((value) => typeof value !== 'string')
         ) {
-          this.setFieldError(path, 'Debe ser un objeto JSON con valores string.');
+          this.setFieldError(
+            path,
+            'Debe ser un objeto JSON con valores string.',
+          );
           return;
         }
       }

@@ -110,7 +110,9 @@ label {
   opacity: 0;
   pointer-events: none;
   transform: translateY(-6px);
-  transition: opacity 120ms ease, transform 120ms ease;
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
   z-index: 20;
 }
 
@@ -146,6 +148,52 @@ select {
 textarea {
   resize: vertical;
   min-height: 70px;
+}
+
+.color-control {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 0.4rem 0.5rem;
+
+  code {
+    margin-left: auto;
+    font-size: 0.76rem;
+    color: #334155;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 0.14rem 0.38rem;
+  }
+}
+
+.color-picker {
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.color-picker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.color-picker::-webkit-color-swatch {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+}
+
+.color-swatch {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  flex: 0 0 auto;
 }
 
 button {
@@ -196,7 +244,11 @@ button:hover {
 .reset-row {
   position: sticky;
   bottom: 0;
-  background: linear-gradient(180deg, rgba(248, 250, 252, 0.25) 0%, #f8fafc 40%);
+  background: linear-gradient(
+    180deg,
+    rgba(248, 250, 252, 0.25) 0%,
+    #f8fafc 40%
+  );
   padding-top: 0.5rem;
 }
 

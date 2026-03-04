@@ -227,6 +227,7 @@ export const DEFAULT_SCHEMA_DATA = [
           level: 'Nivel 2',
           info: 'Información adicional del nivel 2',
           title: 'MLOps',
+          isTrue: false,
           subtitle: 'Operación y despliegue',
           children: [
             {

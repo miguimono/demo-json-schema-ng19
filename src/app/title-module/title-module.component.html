@@ -1,5 +1,8 @@
 <section class="title-module">
   <h1>{{ title() }}</h1>
+  @if (subtitle()) {
+    <p class="title-subtitle">{{ subtitle() }}</p>
+  }
   <p>
     Playground para graficar y explorar la libreria &#64;miguimono/json-schema
     en Angular 19, validando entradas JSON y cada opcion de configuracion en

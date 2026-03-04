@@ -20,12 +20,16 @@
             <li class="legend-item">
               <span
                 class="legend-dot"
-                [class.dot-true]="it.color === 'green'"
-                [class.dot-false]="it.color === 'red'"
-                [class.dot-null]="it.color === 'grey'"
+                [style.backgroundColor]="legendColorMap()[it.color]"
+                [style.borderColor]="legendColorMap()[it.color]"
                 aria-hidden="true"
               ></span>
-              <span class="legend-text">{{ it.text }}</span>
+              <span
+                class="legend-text"
+                [style.color]="legendColorMap()[it.color]"
+              >
+                {{ it.text }}
+              </span>
             </li>
           }
         </ul>
@@ -38,5 +42,28 @@
         [cardTemplate]="cardTemplate()"
       ></schema>
     </div>
+
+    @if (showJsonDebugSection || showSchemaInputsDebugSection) {
+      <section class="schema-debug-grid">
+        @if (showJsonDebugSection) {
+          <article class="debug-card">
+            <header class="debug-card-header">
+              <h4>JSON (`data`)</h4>
+            </header>
+            <pre class="debug-pre">{{ debugDataJson() }}</pre>
+          </article>
+        }
+
+        @if (showSchemaInputsDebugSection) {
+          <article class="debug-card">
+            <header class="debug-card-header">
+              <h4>Payload enviado al schema</h4>
+              <p>`settings`, `cardTemplate`</p>
+            </header>
+            <pre class="debug-pre">{{ debugSchemaInputsJson() }}</pre>
+          </article>
+        }
+      </section>
+    }
   </div>
 </div>
