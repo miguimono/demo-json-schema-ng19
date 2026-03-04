@@ -7,7 +7,10 @@ export interface SchemaSettingDocItem {
   notes?: string;
 }
 
-export const SCHEMA_SETTINGS_DOCS: Record<SchemaSettingPath, SchemaSettingDocItem> = {
+export const SCHEMA_SETTINGS_DOCS: Record<
+  SchemaSettingPath,
+  SchemaSettingDocItem
+> = {
   'messages.isLoading': {
     type: 'boolean',
     description: 'Forzar overlay de cargando.',

@@ -1,5 +1,13 @@
-import { ImageFit, ImageShape, LayoutAlign, SchemaSettings } from '@miguimono/json-schema/ng19';
-import { getFullSchemaDefaults, toSchemaSettings } from './schema-settings-defaults';
+import {
+  ImageFit,
+  ImageShape,
+  LayoutAlign,
+  SchemaSettings,
+} from '@miguimono/json-schema/ng19';
+import {
+  getFullSchemaDefaults,
+  toSchemaSettings,
+} from './schema-settings-defaults';
 
 export const JSON_TITLE_KEYS = ['title'];
 

@@ -64,9 +64,7 @@ export class SchemaComponent {
     FULL_DEFAULTS.layout.linkStyle,
   );
   curveTension = input<number>(FULL_DEFAULTS.layout.curveTension);
-  straightThresholdDx = input<number>(
-    FULL_DEFAULTS.layout.straightThresholdDx,
-  );
+  straightThresholdDx = input<number>(FULL_DEFAULTS.layout.straightThresholdDx);
   columnGapPx = input<number>(FULL_DEFAULTS.layout.columnGapPx);
   rowGapPx = input<number>(FULL_DEFAULTS.layout.rowGapPx);
 
@@ -117,9 +115,7 @@ export class SchemaComponent {
   allowCardTextSelection = input<boolean>(
     FULL_DEFAULTS.dataView.allowCardTextSelection,
   );
-  showCopyAllButton = input<boolean>(
-    FULL_DEFAULTS.dataView.showCopyAllButton,
-  );
+  showCopyAllButton = input<boolean>(FULL_DEFAULTS.dataView.showCopyAllButton);
   autoResizeCards = input<boolean>(FULL_DEFAULTS.dataView.autoResizeCards);
   paddingWidthPx = input<number>(FULL_DEFAULTS.dataView.paddingWidthPx);
   paddingHeightPx = input<number>(FULL_DEFAULTS.dataView.paddingHeightPx);
