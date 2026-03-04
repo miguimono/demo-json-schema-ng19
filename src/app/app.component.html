@@ -1,27 +1,25 @@
-<div class="main">
+<div class="playground-shell">
   @if (isBrowser) {
-    <app-schema
-      [title]="damageOptions.title"
-      [id]="id"
-      [schemeData]="data"
-      [isLoading]="showLoader"
-      [isError]="isError!"
-      [labelData]="damageOptions.labelData"
-      [accentByKey]="damageOptions.accentByKey"
-      [accentFill]="damageOptions.accentFill"
-      [showColorTrue]="damageOptions.showColorTrue"
-      [showColorFalse]="damageOptions.showColorFalse"
-      [showColorNull]="damageOptions.showColorNull"
-      [descriptionShowColorTrue]="damageOptions.descriptionShowColorTrue"
-      [descriptionShowColorFalse]="damageOptions.descriptionShowColorFalse"
-      [descriptionShowColorNull]="damageOptions.descriptionShowColorNull"
-      [showImage]="damageOptions.showImage"
-    >
-    </app-schema>
-    <h1>Json completo:</h1>
-    <p>
-      {{ data | json }}
-    </p>
+    <app-config-banner
+      class="config-module"
+      [defaultJsonObject]="defaultJsonObject"
+      (schemaSettingsChange)="onSettingsChange($event)"
+      (renderDataChange)="onRenderDataChange($event)"
+    ></app-config-banner>
+
+    <main class="content-column">
+      <app-title-module [title]="schemaTitle"></app-title-module>
+
+      <section class="schema-module">
+        <app-schema
+          [schemeData]="renderData"
+          [schemaSettings]="settingsFormModel"
+          [descriptionShowColorTrue]="'enabled true'"
+          [descriptionShowColorFalse]="'enabled false'"
+          [descriptionShowColorNull]="'enabled null'"
+        ></app-schema>
+      </section>
+    </main>
   } @else {
     <p>Cargando visualizador...</p>
   }

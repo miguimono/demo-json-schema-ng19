@@ -20,10 +20,13 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('json-schema-ng19');
   });
 
-  it('should render title', () => {
+  it('should render the three modules', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, json-schema-ng19');
+    expect(compiled.textContent).toContain(
+      'Playground para graficar y explorar la libreria',
+    );
+    expect(compiled.textContent).toContain('Banner de configuracion');
   });
 });

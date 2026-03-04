@@ -11,6 +11,9 @@ import {
   input,
   TemplateRef,
 } from '@angular/core';
+import { getFullSchemaDefaults } from '../shared/schema-settings-defaults';
+
+const FULL_DEFAULTS = getFullSchemaDefaults();
 
 @Component({
   selector: 'app-schema',
@@ -21,54 +24,105 @@ import {
 })
 export class SchemaComponent {
   // --- Inputs básicos ---
-  title = input<string>('json-schema-ng19: ');
+  // title = input<string>('json-schema-ng19: ');
   id = input<number | string | null>(null);
   schemeData = input<any | null>(null);
+  schemaSettings = input<SchemaSettings | null>(null);
 
   showLegend = input<boolean>(true);
   legendTitle = input<string>('Leyenda de colores');
 
   // --- Mensajes ---
-  isLoading = input<boolean>(false);
-  isError = input<boolean>(false);
-  emptyMessage = input<string>('No hay datos para mostrar.');
-  loadingMessage = input<string>('Cargando json-schema...');
-  errorMessage = input<string>('Error al cargar el json-schema.');
+  isLoading = input<boolean>(FULL_DEFAULTS.messages.isLoading);
+  isError = input<boolean>(FULL_DEFAULTS.messages.isError);
+  emptyMessage = input<string>(FULL_DEFAULTS.messages.emptyMessage);
+  loadingMessage = input<string>(FULL_DEFAULTS.messages.loadingMessage);
+  errorMessage = input<string>(FULL_DEFAULTS.messages.errorMessage);
 
   // --- Colores / acentos ---
-  accentByKey = input<string | null>(null);
-  accentInverse = input<boolean>(false);
-  accentFill = input<boolean>(false);
-  showColorTrue = input<boolean>(false);
-  showColorFalse = input<boolean>(false);
-  showColorNull = input<boolean>(false);
+  linkStroke = input<string>(FULL_DEFAULTS.colors.linkStroke);
+  linkStrokeWidth = input<number>(FULL_DEFAULTS.colors.linkStrokeWidth);
+  accentByKey = input<string | null>(FULL_DEFAULTS.colors.accentByKey);
+  accentInverse = input<boolean>(FULL_DEFAULTS.colors.accentInverse);
+  accentFill = input<boolean>(FULL_DEFAULTS.colors.accentFill);
+  showColorTrue = input<boolean>(FULL_DEFAULTS.colors.showColorTrue);
+  showColorFalse = input<boolean>(FULL_DEFAULTS.colors.showColorFalse);
+  showColorNull = input<boolean>(FULL_DEFAULTS.colors.showColorNull);
 
   descriptionShowColorTrue = input<string | null>(null);
   descriptionShowColorFalse = input<string | null>(null);
   descriptionShowColorNull = input<string | null>(null);
 
   // --- Layout ---
-  layoutAlign = input<'firstChild' | 'center'>('center');
+  layoutDirection = input<'RIGHT' | 'DOWN'>(
+    FULL_DEFAULTS.layout.layoutDirection,
+  );
+  layoutAlign = input<'firstChild' | 'center'>(
+    FULL_DEFAULTS.layout.layoutAlign,
+  );
+  linkStyle = input<'curve' | 'orthogonal' | 'line'>(
+    FULL_DEFAULTS.layout.linkStyle,
+  );
+  curveTension = input<number>(FULL_DEFAULTS.layout.curveTension);
+  straightThresholdDx = input<number>(
+    FULL_DEFAULTS.layout.straightThresholdDx,
+  );
+  columnGapPx = input<number>(FULL_DEFAULTS.layout.columnGapPx);
+  rowGapPx = input<number>(FULL_DEFAULTS.layout.rowGapPx);
 
   // --- Viewport ---
-  viewportHeight = input<number | null>(null);
-  minViewportHeight = input<number | null>(null);
-  showToolbar = input<boolean>(true);
+  viewportHeight = input<number | null>(FULL_DEFAULTS.viewport.height);
+  minViewportHeight = input<number | null>(FULL_DEFAULTS.viewport.minHeight);
+  showToolbar = input<boolean>(FULL_DEFAULTS.viewport.showToolbar);
+  toolbarShowLinkStyle = input<boolean>(
+    FULL_DEFAULTS.viewport.toolbarControls.showLinkStyle,
+  );
+  toolbarShowLayoutAlign = input<boolean>(
+    FULL_DEFAULTS.viewport.toolbarControls.showLayoutAlign,
+  );
+  toolbarShowLayoutDirection = input<boolean>(
+    FULL_DEFAULTS.viewport.toolbarControls.showLayoutDirection,
+  );
 
   // --- DataView ---
-  jsonTitleKeys = input<string[]>();
-  labelData = input<Record<string, string>>();
-  hiddenKeysGlobal = input<string[]>();
-  noWrapKeys = input<string[]>();
+  jsonTitleKeys = input<string[]>(FULL_DEFAULTS.dataView.titleKeyPriority);
+  hiddenKeysGlobal = input<string[]>(FULL_DEFAULTS.dataView.hiddenKeysGlobal);
+  treatScalarArraysAsAttribute = input<boolean>(
+    FULL_DEFAULTS.dataView.treatScalarArraysAsAttribute,
+  );
+  maxDepth = input<number | null>(FULL_DEFAULTS.dataView.maxDepth);
+  labelData = input<Record<string, string>>(FULL_DEFAULTS.dataView.labelData);
+  previewMaxKeys = input<number>(FULL_DEFAULTS.dataView.previewMaxKeys);
+  valueMaxChars = input<number | null>(FULL_DEFAULTS.dataView.valueMaxChars);
+  valueShowTooltip = input<boolean>(FULL_DEFAULTS.dataView.valueShowTooltip);
+  noWrapKeys = input<string[]>(FULL_DEFAULTS.dataView.noWrapKeys);
+  maxCardWidth = input<number | null>(FULL_DEFAULTS.dataView.maxCardWidth);
+  maxCardHeight = input<number | null>(FULL_DEFAULTS.dataView.maxCardHeight);
+  defaultNodeWidth = input<number>(
+    FULL_DEFAULTS.dataView.defaultNodeSize.width,
+  );
+  defaultNodeHeight = input<number>(
+    FULL_DEFAULTS.dataView.defaultNodeSize.height,
+  );
 
-  showImage = input<string | null>(null);
-  imageSizePx = input<number>(32);
-  imageShape = input<ImageShape>('square'); // opcional: "square" | "rounded" | "circle"
-  imageBorder = input<boolean>(false);
+  showImage = input<string | null>(FULL_DEFAULTS.dataView.showImage);
+  imageSizePx = input<number>(FULL_DEFAULTS.dataView.imageSizePx);
+  imageShape = input<ImageShape>(FULL_DEFAULTS.dataView.imageShape);
+  imageBorder = input<boolean>(FULL_DEFAULTS.dataView.imageBorder);
+  imageBg = input<string | null>(FULL_DEFAULTS.dataView.imageBg);
+  imageFit = input<ImageFit>(FULL_DEFAULTS.dataView.imageFit);
+  imageFallback = input<string | null>(FULL_DEFAULTS.dataView.imageFallback);
 
-  imageBg = input<string | null>('transparent');
-  imageFit = input<ImageFit>('contain');
-  enableCollapse = input<boolean>(true);
+  enableCollapse = input<boolean>(FULL_DEFAULTS.dataView.enableCollapse);
+  allowCardTextSelection = input<boolean>(
+    FULL_DEFAULTS.dataView.allowCardTextSelection,
+  );
+  showCopyAllButton = input<boolean>(
+    FULL_DEFAULTS.dataView.showCopyAllButton,
+  );
+  autoResizeCards = input<boolean>(FULL_DEFAULTS.dataView.autoResizeCards);
+  paddingWidthPx = input<number>(FULL_DEFAULTS.dataView.paddingWidthPx);
+  paddingHeightPx = input<number>(FULL_DEFAULTS.dataView.paddingHeightPx);
 
   // --- Template para las cards ---
   cardTemplate = input<TemplateRef<any> | null>(null);
@@ -83,6 +137,14 @@ export class SchemaComponent {
     ].some((text) => !!text);
   });
 
+  effectiveAccentByKey = computed<string | null>(
+    () => this.resolvedSettings().colors?.accentByKey ?? null,
+  );
+
+  effectiveAccentInverse = computed<boolean>(
+    () => this.resolvedSettings().colors?.accentInverse ?? false,
+  );
+
   /**
    * Ítems de leyenda aplicando accentInverse:
    * - accentInverse = false → verde=true, rojo=false.
@@ -92,7 +154,7 @@ export class SchemaComponent {
   legendItems = computed<{ color: 'green' | 'red' | 'grey'; text: string }[]>(
     () => {
       const items: { color: 'green' | 'red' | 'grey'; text: string }[] = [];
-      const inv = this.accentInverse();
+      const inv = this.effectiveAccentInverse();
 
       const tTrue = this.descriptionShowColorTrue();
       const tFalse = this.descriptionShowColorFalse();
@@ -111,7 +173,7 @@ export class SchemaComponent {
 
   /** Mapa completo de configuración para el <schema> interno. */
 
-  settings = computed<SchemaSettings>(() => ({
+  legacySettings = computed<SchemaSettings>(() => ({
     messages: {
       isLoading: this.isLoading(),
       isError: this.isError(),
@@ -120,6 +182,8 @@ export class SchemaComponent {
       errorMessage: this.errorMessage(),
     },
     colors: {
+      linkStroke: this.linkStroke(),
+      linkStrokeWidth: this.linkStrokeWidth(),
       accentByKey: this.accentByKey(),
       accentFill: this.accentFill(),
       accentInverse: this.accentInverse(),
@@ -128,28 +192,57 @@ export class SchemaComponent {
       showColorNull: this.showColorNull(),
     },
     layout: {
+      layoutDirection: this.layoutDirection(),
       layoutAlign: this.layoutAlign(),
+      linkStyle: this.linkStyle(),
+      curveTension: this.curveTension(),
+      straightThresholdDx: this.straightThresholdDx(),
+      columnGapPx: this.columnGapPx(),
+      rowGapPx: this.rowGapPx(),
     },
     viewport: {
       height: this.viewportHeight() ?? undefined,
       minHeight: this.minViewportHeight() ?? undefined,
       showToolbar: this.showToolbar(),
+      toolbarControls: {
+        showLinkStyle: this.toolbarShowLinkStyle(),
+        showLayoutAlign: this.toolbarShowLayoutAlign(),
+        showLayoutDirection: this.toolbarShowLayoutDirection(),
+      },
     },
     dataView: {
       titleKeyPriority: this.jsonTitleKeys(),
-      labelData: this.labelData(),
       hiddenKeysGlobal: this.hiddenKeysGlobal(),
+      treatScalarArraysAsAttribute: this.treatScalarArraysAsAttribute(),
+      maxDepth: this.maxDepth(),
+      labelData: this.labelData(),
+      previewMaxKeys: this.previewMaxKeys(),
+      valueMaxChars: this.valueMaxChars(),
+      valueShowTooltip: this.valueShowTooltip(),
       noWrapKeys: this.noWrapKeys(),
+      maxCardWidth: this.maxCardWidth(),
+      maxCardHeight: this.maxCardHeight(),
+      defaultNodeSize: {
+        width: this.defaultNodeWidth(),
+        height: this.defaultNodeHeight(),
+      },
       showImage: this.showImage(),
       imageSizePx: this.imageSizePx(),
       imageShape: this.imageShape(),
       imageBorder: this.imageBorder(),
       imageBg: this.imageBg(),
       imageFit: this.imageFit(),
+      imageFallback: this.imageFallback(),
       enableCollapse: this.enableCollapse(),
-      autoResizeCards: true,
-      valueShowTooltip: true,
-      valueMaxChars: 50,
+      allowCardTextSelection: this.allowCardTextSelection(),
+      showCopyAllButton: this.showCopyAllButton(),
+      autoResizeCards: this.autoResizeCards(),
+      paddingWidthPx: this.paddingWidthPx(),
+      paddingHeightPx: this.paddingHeightPx(),
     },
   }));
+
+  resolvedSettings = computed<SchemaSettings>(
+    () => this.schemaSettings() ?? this.legacySettings(),
+  );
 }

@@ -1,24 +1,21 @@
 <!-- src/app/shared/sh-schema/sh-schema.component.html -->
 <div id="schema">
   <div class="schema-component">
-    <h1>{{ title() }}</h1>
+    <!-- <h1>{{ title() }}</h1> -->
     @if (legendVisible()) {
       <div class="schema-legend">
-        <ul class="legend-list">
-          <li class="legend-item schema-title">
-            <h3>
-              {{ legendTitle() }}
-            </h3>
-          </li>
-          @if (accentByKey()) {
-            <li class="legend-item">
-              @if (accentByKey(); as key) {
-                <span class="legend-accent-key">
-                  Clave de acento: <code>{{ key }}</code>
-                </span>
-              }
-            </li>
+        <div class="legend-header">
+          <h3>{{ legendTitle() }}</h3>
+          @if (effectiveAccentByKey()) {
+            @if (effectiveAccentByKey(); as key) {
+              <span class="legend-accent-key">
+                Clave de acento: <code>{{ key }}</code>
+              </span>
+            }
           }
+        </div>
+
+        <ul class="legend-list">
           @for (it of legendItems(); track it.text) {
             <li class="legend-item">
               <span
@@ -37,7 +34,7 @@
     <div class="schema-wrapper">
       <schema
         [data]="schemeData()"
-        [settings]="settings()"
+        [settings]="resolvedSettings()"
         [cardTemplate]="cardTemplate()"
       ></schema>
     </div>
